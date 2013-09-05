@@ -20,25 +20,10 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
+  <body id="landing">
 
-    <header>
-      <div class="row">
-        <div class="large-12 columns">
-          studiolo.gy
-        </div>
-      </div>
-    </header>
+    <%= yield %>
 
-    <div class="row">
-      <div class="large-12 columns">
-        <%= yield %>
-      </div>
-    </div>
-
-    <footer>
-      footer
-    </footer>
     
     <%= javascript_include_tag "application" %>
   </body>

@@ -13,3 +13,28 @@
 
 @import "foundation_and_overrides.scss";
 @import 'compass';
+
+#landing {
+  padding-top: 50px;
+  text-align: center;
+  header {
+    h1 {
+      margin-bottom: 0;
+    }
+    .subtitle {
+      font-style: italic;
+    }
+  }
+  .signup {
+    margin-top: 30px;
+  }
+
+}
+
+header {
+  margin: 20px 0;
+}
+
+footer {
+  text-align: center;
+}

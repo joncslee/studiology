@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -16,6 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem "compass-rails", "~> 2.0.alpha.0"
 gem 'zurb-foundation', '~> 4.0.0'
+
+gem 'nifty-generators'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -45,3 +47,13 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# RSpec testing suite
+gem 'rspec-rails' 
+gem 'factory_girl_rails'
+gem 'faker' 
+gem 'capybara' 
+gem 'guard-rspec' 
+gem 'launchy'
+
+gem "mocha", group: :test

@@ -1,0 +1,17 @@
+<% title "Gear" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for gear in @gear %>
+    <tr>
+      <td><%= gear.name %></td>
+      <td><%= link_to "Show", gear %></td>
+      <td><%= link_to "Edit", edit_gear_path(gear) %></td>
+      <td><%= link_to "Destroy", gear, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Gear", new_gear_path %></p>
