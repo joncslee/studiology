@@ -1,0 +1,9 @@
+<table>
+  <% @gear.each do |g| %>
+    <tr>
+      <td><%= g.name %></td>
+      <td><%= g.category %></td>
+      <td><button class="button small" style="margin-bottom: 0;">Add to Studio!</button></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,8 +1,45 @@
 <% title "Gear" %>
 
+<%= image_tag @gear.url_image_large %>
+
 <p>
   <strong>Name:</strong>
   <%= @gear.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @gear.description %>
+</p>
+
+<p>
+  <strong>SKU:</strong>
+  <%= @gear.sku %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @gear.price %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @gear.category %>
+</p>
+
+<p>
+  <strong>Manufacturer:</strong>
+  <%= @gear.manufacturer %>
+</p>
+
+<p>
+  <strong>Shipping Cost:</strong>
+  <%= @gear.shipping_cost %>
+</p>
+
+<p>
+  <strong>Product Type:</strong>
+  <%= @gear.product_type %>
 </p>
 
 <p>

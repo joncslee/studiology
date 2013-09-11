@@ -57,3 +57,6 @@ gem 'guard-rspec'
 gem 'launchy'
 
 gem "mocha", group: :test
+
+gem 'devise', '3.0.0.rc'
+gem 'rack-mini-profiler'

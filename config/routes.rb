@@ -1,4 +1,5 @@
 Studiology::Application.routes.draw do
+  devise_for :users
   resources :gear
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -7,7 +8,10 @@ Studiology::Application.routes.draw do
   root 'landing#signup'
 
   # Example of regular route:
-  get '/upload' => 'gear#upload'
+  get 'upload' => 'gear#upload'
+  post 'upload' => 'gear#upload'
+  get '/search_suggestions' => 'gear#search_suggestions'
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

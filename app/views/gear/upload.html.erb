@@ -1,1 +1,6 @@
-uploading..
+<%= form_tag '', :id => 'gear-search' do %>
+  <%= text_field_tag :search, @search %>
+<% end %>
+
+<div id="gear-results">
+</div>

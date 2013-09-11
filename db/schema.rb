@@ -11,12 +11,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130903183206) do
+ActiveRecord::Schema.define(version: 20130906173401) do
 
   create_table "gear", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
+    t.string   "sku"
+    t.string   "url_product"
+    t.string   "url_image_small"
+    t.string   "url_image_large"
+    t.decimal  "price",           precision: 10, scale: 0
+    t.decimal  "price_high",      precision: 10, scale: 0
+    t.decimal  "price_list",      precision: 10, scale: 0
+    t.string   "category"
+    t.string   "manufacturer"
+    t.decimal  "shipping_cost",   precision: 10, scale: 0
+    t.decimal  "price_non_new",   precision: 10, scale: 0
+    t.string   "product_type"
+    t.integer  "popular"
+    t.integer  "num_raters"
+    t.text     "sample_review"
   end
+
+  create_table "studios", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end

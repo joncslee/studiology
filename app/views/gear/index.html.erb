@@ -3,10 +3,14 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Category</th>
+    <th>Product Type</th>
   </tr>
   <% for gear in @gear %>
     <tr>
       <td><%= gear.name %></td>
+      <td><%= gear.category %></td>
+      <td><%= gear.product_type %></td>
       <td><%= link_to "Show", gear %></td>
       <td><%= link_to "Edit", edit_gear_path(gear) %></td>
       <td><%= link_to "Destroy", gear, :confirm => 'Are you sure?', :method => :delete %></td>

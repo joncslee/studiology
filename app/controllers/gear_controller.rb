@@ -1,6 +1,6 @@
 class GearController < ApplicationController
   def index
-    @gear = Gear.all
+    @gear = Gear.all.sample(50)
   end
 
   def show
@@ -40,5 +40,13 @@ class GearController < ApplicationController
   end
 
   def upload
+  end
+
+  def search_suggestions
+    @gear = Gear.where("name LIKE ?", "%#{params[:search]}%").limit(20).order('popular DESC')
+
+    respond_to do |format|
+      format.js
+    end
   end
 end
