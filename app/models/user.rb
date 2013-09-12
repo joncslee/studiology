@@ -9,7 +9,10 @@ class User < ActiveRecord::Base
 
   after_create :create_studio
 
+  private
+
   def create_studio
     self.build_studio
   end
+
 end
