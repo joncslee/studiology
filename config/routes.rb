@@ -13,6 +13,7 @@ Studiology::Application.routes.draw do
   get '/search_suggestions' => 'gear#search_suggestions'
   get '/add_gear' => 'gear#add_gear'
 
+  get '/:id' => 'studio#show'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
