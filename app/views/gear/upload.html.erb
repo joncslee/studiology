@@ -1,6 +1,22 @@
-<%= form_tag '', :id => 'gear-search' do %>
-  <%= text_field_tag :search, @search %>
-<% end %>
+<div class="row">
+  <div class="large-8 columns">
+    <%= form_tag '', :id => 'gear-search' do %>
+      <%= text_field_tag :search, @search %>
+    <% end %>
 
-<div id="gear-results">
+    <div id="gear-results">
+    </div>
+  </div>
+
+  <div class="large-4 columns">
+    <div id="gear-ownership">
+      <table>
+        <% current_user.studio.gear.each do |g| %>
+          <tr>
+            <td><%= g.name %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>

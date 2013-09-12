@@ -1,4 +1,7 @@
 class GearController < ApplicationController
+
+  before_filter :authenticate_user!
+
   def index
     @gear = Gear.all.sample(50)
   end
@@ -42,8 +45,23 @@ class GearController < ApplicationController
   def upload
   end
 
+  #
+  # actions to take place on the gear selection page
+  #
   def search_suggestions
     @gear = Gear.where("name LIKE ?", "%#{params[:search]}%").limit(20).order('popular DESC')
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def add_gear
+    if user_signed_in?
+      current_user.studio.add_gear params[:gear_id]
+    end
+
+    @gear = current_user.studio.gear
 
     respond_to do |format|
       format.js

@@ -1,5 +1,6 @@
 class Gear < ActiveRecord::Base
-  belongs_to :studio
+  has_many :ownerships
+  has_many :studio, :through => :ownerships
 
   def self.parse_data_from_zzounds
     count = 0

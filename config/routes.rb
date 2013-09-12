@@ -11,6 +11,7 @@ Studiology::Application.routes.draw do
   get 'upload' => 'gear#upload'
   post 'upload' => 'gear#upload'
   get '/search_suggestions' => 'gear#search_suggestions'
+  get '/add_gear' => 'gear#add_gear'
 
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

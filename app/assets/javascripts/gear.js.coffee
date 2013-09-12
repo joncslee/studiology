@@ -3,13 +3,21 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $('form#gear-search input').on('keypress', ->
+
+  # timeout to give the DOM time to catch up 
+  # with text field update
   setTimeout(loadGear, 50)
 )
 
+
 loadGear = -> 
-  $.ajax({
-    url: '/search_suggestions',
-    data: 'search=' + $('form#gear-search input#search').val(),
-    dataType: 'script'
-  })
+  search = $('form#gear-search input#search').val()
+  if search == ''
+    $('#gear-results').html('')
+  else
+    $.ajax({
+      url: '/search_suggestions',
+      data: 'search=' + search,
+      dataType: 'script'
+    })
 

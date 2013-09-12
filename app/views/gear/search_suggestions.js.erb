@@ -1,3 +1,14 @@
 $('#gear-results').html("<%= escape_javascript(render :partial => 'gear_results', :locals => { :gear => @gear }) %>");
 
+$('button.add-gear').click(function() {
+   var gearId = this.getAttribute('data-id');
+   addGear(gearId);
+});
 
+addGear = function(gearId) {
+  $.ajax({
+    url: '/add_gear',
+    data: 'gear_id=' + gearId,
+    dataType: 'script'
+  });
+};
