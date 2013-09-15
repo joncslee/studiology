@@ -8,4 +8,6 @@
   <% end %>
 </table>
 
-Current logged in user? <%= @logged_in %>
+<% if @logged_in %>
+  <%= link_to 'Add Gear', '/upload', :class => 'button' %>
+<% end %>

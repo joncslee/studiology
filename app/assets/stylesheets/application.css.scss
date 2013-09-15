@@ -11,8 +11,19 @@
  *= require_self
  */
 
+$primary-color: #ee7532;
+
+$dark-orange: #ee7532;
+$light-orange: #f19a46;
+$border-grey: #d6d6d6;
+
 @import "foundation_and_overrides.scss";
 @import 'compass';
+
+// general styles
+h1 {
+  font-weight: normal;
+}
 
 #landing {
   padding-top: 50px;
@@ -32,12 +43,49 @@
 }
 
 header {
-  margin: 20px 0;
+  margin-bottom: 30px;
+  padding: 30px 0;
+  border-bottom: 1px solid $border-grey;
+  .logo {
+    float: left;
+    font-size: 2em;
+    a {
+      color: $header-font-color;
+    }
+  }
   .account-info {
     float: right;
   }
 }
 
 footer {
+  margin-top: 30px;
+  padding: 30px 0;
+  border-top: 1px solid $border-grey;
   text-align: center;
+}
+
+// studio blocks
+.studio-block {
+  border: 1px solid $border-grey;
+  .photo {
+    float: left;
+    width: 60%;
+  }
+  .info {
+    float: left;
+    width: 40%;
+    .header {
+      background-color: #fafafa;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 20px;
+    }
+    .content {
+      padding: 20px;
+    }
+  }
+}
+
+.clear-fix {
+  clear: both;
 }
