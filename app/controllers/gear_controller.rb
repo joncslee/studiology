@@ -1,6 +1,6 @@
 class GearController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:search_suggestions, :add_gear]
 
   def index
     @gear = Gear.all.sample(50)
@@ -43,22 +43,28 @@ class GearController < ApplicationController
   end
 
   def upload
+    @gear = current_user.studio.gear
   end
 
   #
   # actions to take place on the gear selection page
   #
   def search_suggestions
-    @gear = Gear.where("name LIKE ?", "%#{params[:search]}%").limit(20).order('popular DESC')
+    @gear = Gear.search(params[:search])
 
     respond_to do |format|
       format.js
     end
   end
 
-  def add_gear
+  def update_gear
+    add_or_delete = params[:aod]
     if user_signed_in?
-      current_user.studio.add_gear params[:gear_id]
+      if add_or_delete == 'add'
+        current_user.studio.add_gear params[:gear_id]
+      else
+        current_user.studio.delete_gear params[:gear_id]
+      end
     end
 
     @gear = current_user.studio.gear
@@ -67,4 +73,5 @@ class GearController < ApplicationController
       format.js
     end
   end
+
 end

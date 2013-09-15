@@ -2,6 +2,7 @@
   <% gear.each do |g| %>
     <tr>
       <td><%= g.name %></td>
+      <td><button data-id="<%= g.id %>" class="remove-gear button small" style="margin-bottom: 0;">Remove</button></td>
     </tr>
   <% end %>
 </table>

@@ -2,6 +2,11 @@ class Gear < ActiveRecord::Base
   has_many :ownerships
   has_many :studio, :through => :ownerships
 
+  def self.search(search)
+    search_length = search.split.length
+    all(:conditions => [(['name LIKE ?'] * search_length).join(' AND ')] + search.split.map { |name| "%#{name}%" }, :limit => 20)
+  end
+
   def self.parse_data_from_zzounds
     count = 0
     File.open("#{Rails.root}/zdata/feed--affiliate.txt", "r").each_line do |line|

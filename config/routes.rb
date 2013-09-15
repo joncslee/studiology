@@ -5,13 +5,16 @@ Studiology::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'landing#signup'
+  # root 'landing#signup'
+  root 'studio#explore'
 
   # Example of regular route:
-  get 'upload' => 'gear#upload'
-  post 'upload' => 'gear#upload'
+  get '/explore' => 'studio#explore'
+  get '/upload' => 'gear#upload'
+  post '/upload' => 'gear#upload'
+
   get '/search_suggestions' => 'gear#search_suggestions'
-  get '/add_gear' => 'gear#add_gear'
+  get '/update_gear' => 'gear#update_gear'
 
   get '/:id' => 'studio#show'
 

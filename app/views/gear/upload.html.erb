@@ -9,14 +9,9 @@
   </div>
 
   <div class="large-4 columns">
+    <h2>My Gear</h2>
     <div id="gear-ownership">
-      <table>
-        <% current_user.studio.gear.each do |g| %>
-          <tr>
-            <td><%= g.name %></td>
-          </tr>
-        <% end %>
-      </table>
+      <%= render :partial => 'gear_ownership', :locals => { :gear => @gear } %>
     </div>
   </div>
 </div>

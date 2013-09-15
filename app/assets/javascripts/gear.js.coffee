@@ -9,6 +9,17 @@ $('form#gear-search input').on('keypress', ->
   setTimeout(loadGear, 50)
 )
 
+# gear adding and deleting
+$('#gear-results').on('click', 'button.add-gear', ->
+   gearId = this.getAttribute('data-id')
+   updateGear(gearId, 'add')
+)
+
+$('#gear-ownership').on('click', 'button.remove-gear', ->
+   gearId = this.getAttribute('data-id')
+   updateGear(gearId, 'remove')
+)
+
 
 loadGear = -> 
   search = $('form#gear-search input#search').val()
@@ -21,3 +32,9 @@ loadGear = ->
       dataType: 'script'
     })
 
+updateGear = (gearId, aod) ->
+  $.ajax({
+    url: '/update_gear',
+    data: 'gear_id=' + gearId + '&aod=' + aod,
+    dataType: 'script'
+  })
