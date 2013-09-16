@@ -2,8 +2,8 @@
   <% @gear.each do |g| %>
     <tr>
       <td><%= g.name %></td>
-      <td><%= g.category %></td>
-      <td><button data-id="<%= g.id %>" class="add-gear button small" style="margin-bottom: 0;">Add It!</button></td>
+      <td><a href="javascript:void(0)" class="add-gear" data-id="<%= g.id %>"><i class="fi-plus"></i></a></td>
+
     </tr>
   <% end %>
 </table>

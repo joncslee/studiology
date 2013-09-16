@@ -2,7 +2,7 @@
   <% gear.each do |g| %>
     <tr>
       <td><%= g.name %></td>
-      <td><button data-id="<%= g.id %>" class="remove-gear button small" style="margin-bottom: 0;">Remove</button></td>
+      <td><a href="javascript:void(0)" class="remove-gear" data-id="<%= g.id %>"><i class="fi-x"></i></a></td>
     </tr>
   <% end %>
 </table>

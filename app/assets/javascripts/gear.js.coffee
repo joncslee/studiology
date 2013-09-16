@@ -10,12 +10,12 @@ $('form#gear-search input').on('keypress', ->
 )
 
 # gear adding and deleting
-$('#gear-results').on('click', 'button.add-gear', ->
+$('#gear-results').on('click', 'a.add-gear', ->
    gearId = this.getAttribute('data-id')
    updateGear(gearId, 'add')
 )
 
-$('#gear-ownership').on('click', 'button.remove-gear', ->
+$('#gear-ownership').on('click', 'a.remove-gear', ->
    gearId = this.getAttribute('data-id')
    updateGear(gearId, 'remove')
 )
