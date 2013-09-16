@@ -60,3 +60,4 @@ gem "mocha", group: :test
 
 gem 'devise', '3.0.0.rc'
 gem 'rack-mini-profiler'
+gem 'friendly_id', '5.0.0.beta4'

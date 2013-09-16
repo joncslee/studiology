@@ -1,4 +1,6 @@
 class Gear < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   has_many :ownerships
   has_many :studio, :through => :ownerships
 

@@ -7,7 +7,7 @@ class GearController < ApplicationController
   end
 
   def show
-    @gear = Gear.find(params[:id])
+    @gear = Gear.friendly.find(params[:id])
   end
 
   def new
