@@ -43,9 +43,12 @@ $('#gear-ownership').on('mouseenter mouseleave', 'tr', ->
 # pinterest-style dynamic tiling for studio page
 #
 container = $('#gear-container')
-container.masonry({
-  itemSelector: 'a.item'
-})
+container.imagesLoaded( ->
+  container.show()
+  container.masonry({
+    itemSelector: 'a.item'
+  })
+)
 
 #
 # ajax methods

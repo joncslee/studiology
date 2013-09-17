@@ -15,6 +15,7 @@
 //= require foundation
 //= require turbolinks
 //= require masonry.pkgd
+//= require imagesloaded.pkgd
 //= require_tree .
 
 $(document).foundation();
