@@ -8,6 +8,10 @@ class Gear < ActiveRecord::Base
     user.studio.gear.include?(self)
   end
 
+  def similar_gear
+    Gear.joins(:ownerships).select('gear.*, count(gear_id) as "gear_count"').where('gear.category = ?', self.category).group(:gear_id).order('gear_count desc')
+  end
+
   def self.search(search)
     search_length = search.split.length
     all(:conditions => [(['name LIKE ?'] * search_length).join(' AND ')] + search.split.map { |name| "%#{name}%" }, :limit => 20)

@@ -7,6 +7,16 @@
   <% end %>
 </ul>
 
+<ul class="similar-gear">
+  <% @gear.similar_gear.each do |g| %>
+    <% if @gear == g %>
+      <li class="current"><%= link_to g.name, g %></li>
+    <% else %>
+      <li><%= link_to g.name, g %></li>
+    <% end %>
+  <% end %>
+</ul>
+
 <%= image_tag @gear.url_image_large %>
 
 <p>
