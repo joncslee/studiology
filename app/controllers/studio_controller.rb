@@ -12,7 +12,7 @@ class StudioController < ApplicationController
   end
 
   def explore
-    @studios = Studio.all
+    @studios = Studio.limit(20)
   end
 
 end

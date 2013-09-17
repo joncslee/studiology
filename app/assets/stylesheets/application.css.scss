@@ -44,7 +44,7 @@ h1 {
 }
 
 header {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   padding: 30px 0;
   border-bottom: 1px solid $border-grey;
   .logo {
@@ -66,6 +66,27 @@ footer {
   text-align: center;
 }
 
+// studio header
+.studio-header {
+  padding: 0 0 20px 0;
+  margin: 10px 0;
+  h1 {
+    margin: 0;
+  }
+}
+
+.studio-info {
+  margin-bottom: 30px;
+}
+
+ul.gear-filters {
+  li {
+    list-style-type: none;
+    margin-bottom: 5px;
+  }
+}
+
+
 // studio blocks
 .studio-block {
   border: 1px solid $border-grey;
@@ -83,6 +104,45 @@ footer {
     }
     .content {
       padding: 20px;
+    }
+  }
+}
+
+#gear-results {
+  .gear-result {
+    padding: 12px 10px 12px 12px;
+    a {
+      color: #666;
+    }
+    .add-gear {
+      float: right;
+    }
+  }
+
+  .highlighted {
+    padding: 10px 10px 10px 10px;
+    border: $primary-color 2px solid;
+    background-color: lighten($primary-color, 40%);
+    a {
+      color: $primary-color;
+    }
+  }
+}
+
+#gear-container {
+  a.item {
+    @include transition-property(border-color);
+    @include transition-duration(0.8s);
+    width: 200px;
+    padding: 20px;
+    border: #ededed 1px solid;
+    color: #666;
+    text-align: center;
+    img {
+      margin-bottom: 10px;
+    }
+    &:hover {
+      border-color: $primary-color;
     }
   }
 }

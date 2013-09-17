@@ -1,5 +1,12 @@
 <% title "Gear" %>
 
+<p># Users using this: <%= @gear.ownerships.count %></p>
+<ul>
+  <% @gear.ownerships.each do |o| %>
+    <li><%= link_to o.studio.user.username, o.studio.url %></li>
+  <% end %>
+</ul>
+
 <%= image_tag @gear.url_image_large %>
 
 <p>

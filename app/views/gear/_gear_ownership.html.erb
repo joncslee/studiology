@@ -1,8 +1,8 @@
 <table>
   <% gear.each do |g| %>
     <tr>
-      <td><%= g.name %></td>
-      <td><a href="javascript:void(0)" class="remove-gear" data-id="<%= g.id %>"><i class="fi-x"></i></a></td>
+      <td><%= link_to g.name, g %></td>
+      <td><a href="javascript:void(0)" class="remove-gear" style="display: none;" data-id="<%= g.id %>"><i class="fi-x"></i></a></td>
     </tr>
   <% end %>
 </table>

@@ -1,6 +1,6 @@
 class GearController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:search_suggestions, :add_gear]
+  before_filter :authenticate_user!, :except => [:search_suggestions, :add_gear, :show]
 
   def index
     @gear = Gear.all.sample(50)
@@ -43,7 +43,8 @@ class GearController < ApplicationController
   end
 
   def upload
-    @gear = current_user.studio.gear
+    @user = current_user
+    @gear = @user.studio.gear
   end
 
   #

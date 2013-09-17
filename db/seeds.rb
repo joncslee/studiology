@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+100.times do
+  user = User.create :username => Faker::Internet.user_name, :email => Faker::Internet.email, :password => Faker::Internet.password
+  if user.present? && user.valid?
+    10.times do
+      user.studio.add_gear rand(Gear.count)
+    end
+  end
+end

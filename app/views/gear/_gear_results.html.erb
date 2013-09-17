@@ -1,9 +1,6 @@
-<table>
-  <% @gear.each do |g| %>
-    <tr>
-      <td><%= g.name %></td>
-      <td><a href="javascript:void(0)" class="add-gear" data-id="<%= g.id %>"><i class="fi-plus"></i></a></td>
-
-    </tr>
-  <% end %>
-</table>
+<% @gear.each do |g| %>
+  <div class='gear-result'>
+    <%= link_to g.name, g %>
+    <a href="javascript:void(0)" data-tooltip class="add-gear has-tip" title="Add Gear to Studio" style="display: none;" data-id="<%= g.id %>"><i class="fi-plus"></i></a>
+  </div>
+<% end %>

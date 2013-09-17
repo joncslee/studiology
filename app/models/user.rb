@@ -5,14 +5,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :username, uniqueness: true, presence: true
+  validates :email, uniqueness: true, presence: true
+
   has_one :studio
 
   after_create :create_studio
 
   private
-
-  def create_studio
-    self.build_studio
-  end
 
 end

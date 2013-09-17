@@ -4,6 +4,10 @@ class Gear < ActiveRecord::Base
   has_many :ownerships
   has_many :studio, :through => :ownerships
 
+  def is_owned?(user)
+    user.studio.gear.include?(self)
+  end
+
   def self.search(search)
     search_length = search.split.length
     all(:conditions => [(['name LIKE ?'] * search_length).join(' AND ')] + search.split.map { |name| "%#{name}%" }, :limit => 20)
