@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true, presence: true
   validates :email, uniqueness: true, presence: true
 
-  has_one :studio
+  has_one :studio, :dependent => :destroy
 
   after_create :create_studio
 

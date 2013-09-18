@@ -1,6 +1,6 @@
 class Studio < ActiveRecord::Base
   belongs_to :user
-  has_many :ownerships
+  has_many :ownerships, :dependent => :destroy
   has_many :gear, :through => :ownerships, :order => 'ownerships.created_at DESC'
 
   def add_gear(gear_id)

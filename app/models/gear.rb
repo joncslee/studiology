@@ -1,7 +1,7 @@
 class Gear < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
-  has_many :ownerships
+  has_many :ownerships, :dependent => :destroy
   has_many :studio, :through => :ownerships
 
   def is_owned?(user)
