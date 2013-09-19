@@ -147,6 +147,9 @@ ul.gear-filters {
     &.wide {
       width: 400px;
     }
+    &.narrow {
+      width: 150px;
+    }
     &:hover {
       border-color: $primary-color;
       color: $primary-color;

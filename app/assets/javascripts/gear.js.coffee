@@ -52,10 +52,13 @@ container.imagesLoaded( ->
       height = this.height
       if width > 2 * height
          $(anchor).addClass('wide')
+      else if height > 2 * width
+         $(anchor).addClass('narrow')
     )
   )
   container.show()
   container.masonry({
+    columnWidth: 50,
     itemSelector: 'a.item'
   })
 )
