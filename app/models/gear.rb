@@ -4,17 +4,16 @@ class Gear < ActiveRecord::Base
   has_many :ownerships, :dependent => :destroy
   has_many :studio, :through => :ownerships
 
+  searchable do
+    text :name, :as => :name_textp
+  end
+
   def is_owned?(user)
     user.studio.gear.include?(self)
   end
 
   def similar_gear
     Gear.joins(:ownerships).select('gear.*, count(gear_id) as "gear_count"').where('gear.advertiser_category = ?', self.advertiser_category).group(:gear_id).order('gear_count desc')
-  end
-
-  def self.search(search)
-    search_length = search.split.length
-    all(:conditions => [(['name LIKE ?'] * search_length).join(' AND ')] + search.split.map { |name| "%#{name}%" }, :limit => 20)
   end
 
   def self.parse_data_from_zzounds

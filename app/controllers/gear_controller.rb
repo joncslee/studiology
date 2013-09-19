@@ -51,7 +51,11 @@ class GearController < ApplicationController
   # actions to take place on the gear selection page
   #
   def search_suggestions
-    @gear = Gear.search(params[:search])
+    @search = Gear.search do
+      fulltext params[:search]
+    end
+
+    @gear = @search.results
 
     respond_to do |format|
       format.js
