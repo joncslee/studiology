@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130916154319) do
+ActiveRecord::Schema.define(version: 20130918202154) do
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -32,21 +32,23 @@ ActiveRecord::Schema.define(version: 20130916154319) do
     t.datetime "updated_at"
     t.text     "description"
     t.string   "sku"
-    t.string   "url_product"
-    t.string   "url_image_small"
-    t.string   "url_image_large"
-    t.decimal  "price",           precision: 10, scale: 0
-    t.decimal  "price_high",      precision: 10, scale: 0
-    t.decimal  "price_list",      precision: 10, scale: 0
-    t.string   "category"
+    t.decimal  "price",                              precision: 8, scale: 2
     t.string   "manufacturer"
-    t.decimal  "shipping_cost",   precision: 10, scale: 0
-    t.decimal  "price_non_new",   precision: 10, scale: 0
-    t.string   "product_type"
-    t.integer  "popular"
-    t.integer  "num_raters"
-    t.text     "sample_review"
     t.string   "slug"
+    t.string   "keywords"
+    t.string   "manufacturer_id"
+    t.string   "upc"
+    t.string   "currency"
+    t.decimal  "sale_price",                         precision: 8, scale: 2
+    t.decimal  "retail_price",                       precision: 8, scale: 2
+    t.string   "buy_url",                limit: 300
+    t.string   "impression_url"
+    t.string   "image_url"
+    t.string   "advertiser_category"
+    t.string   "promotional_text"
+    t.string   "in_stock"
+    t.string   "condition"
+    t.decimal  "standard_shipping_cost",             precision: 8, scale: 2
   end
 
   add_index "gear", ["slug"], name: "index_gear_on_slug", unique: true, using: :btree

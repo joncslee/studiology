@@ -9,7 +9,7 @@ class Gear < ActiveRecord::Base
   end
 
   def similar_gear
-    Gear.joins(:ownerships).select('gear.*, count(gear_id) as "gear_count"').where('gear.category = ?', self.category).group(:gear_id).order('gear_count desc')
+    Gear.joins(:ownerships).select('gear.*, count(gear_id) as "gear_count"').where('gear.advertiser_category = ?', self.advertiser_category).group(:gear_id).order('gear_count desc')
   end
 
   def self.search(search)
@@ -68,5 +68,34 @@ class Gear < ActiveRecord::Base
   # Num_Raters
   # Sample_Review
 
+  require 'csv'
+
+  def self.parse_data_from_mf
+    longest = 0
+    CSV.foreach("mfdata/Musician_s_Friend-Musicians_Friend_Product_Catalog.txt", headers: true) do |row|
+      fields = row.to_hash
+
+      gear = Gear.new
+      gear.name = fields['NAME']
+      gear.keywords = fields['KEYWORDS']
+      gear.description = fields['DESCRIPTION']
+      gear.sku = fields['SKU']
+      gear.manufacturer = fields['MANUFACTURER']
+      gear.manufacturer_id = fields['MANUFACTURERID']
+      gear.upc = fields['UPC']
+      gear.sale_price = fields['SALEPRICE']
+      gear.price = fields['PRICE']
+      gear.retail_price = fields['RETAILPRICE']
+      gear.buy_url = fields['BUYURL']
+      gear.impression_url = fields['IMPRESSIONURL']
+      gear.image_url = fields['IMAGEURL']
+      gear.advertiser_category = fields['ADVERTISERCATEGORY']
+      gear.promotional_text = fields['PROMOTIONALTEXT']
+      gear.in_stock = fields['INSTOCK']
+      gear.condition = fields['CONDITION']
+      gear.standard_shipping_cost = fields['STANDARDSHIPPINGCOST']
+      gear.save
+    end
+  end
 
 end

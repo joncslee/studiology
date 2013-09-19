@@ -27,21 +27,11 @@
   </div>
 
   <div class="large-10 columns">
-    <% @studio.gear.each do |g| %>
-      <% if g.category == 'FireWire Audio Interfaces' %>
-        <div class="row">
-          <div class="large-4 large-centered columns">
-            <%= image_tag g.url_image_large %>
-            <%= link_to g.name, g %>
-          </div>
-        </div>
-      <% end %>
-    <% end if false %>
 
     <div id="gear-container">
       <% @studio.gear.each do |g| %>
         <%= link_to g, :class => 'item' do %>
-          <%= image_tag g.url_image_large %><br />
+          <%= image_tag g.image_url %><br />
           <%= g.name %>
         <% end %>
       <% end %>

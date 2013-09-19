@@ -17,7 +17,7 @@
   <% end %>
 </ul>
 
-<%= image_tag @gear.url_image_large %>
+<%= image_tag @gear.image_url, :style => 'width: 100px;' %>
 
 <p>
   <strong>Name:</strong>
@@ -41,7 +41,7 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @gear.category %>
+  <%= @gear.advertiser_category %>
 </p>
 
 <p>
@@ -49,15 +49,6 @@
   <%= @gear.manufacturer %>
 </p>
 
-<p>
-  <strong>Shipping Cost:</strong>
-  <%= @gear.shipping_cost %>
-</p>
-
-<p>
-  <strong>Product Type:</strong>
-  <%= @gear.product_type %>
-</p>
 
 <p>
   <%= link_to "Edit", edit_gear_path(@gear) %> |
