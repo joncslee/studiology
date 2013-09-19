@@ -44,6 +44,16 @@ $('#gear-ownership').on('mouseenter mouseleave', 'tr', ->
 #
 container = $('#gear-container')
 container.imagesLoaded( ->
+  # alter long image dimensions if necessary
+  $('#gear-container a.item').each( ->
+    anchor = this
+    $(anchor).find('img').each( ->
+      width = this.width
+      height = this.height
+      if width > 2 * height
+         $(anchor).addClass('wide')
+    )
+  )
   container.show()
   container.masonry({
     itemSelector: 'a.item'
