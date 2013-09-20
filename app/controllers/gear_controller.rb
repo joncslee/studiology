@@ -48,12 +48,9 @@ class GearController < ApplicationController
   end
 
   def popular
-    @guitars = Gear.joins('inner join ownerships on ownerships.gear_id = gear.id').
-      select('gear.*, count(ownerships.id) as ownerships_count').
-      where('gear.category' => 'Guitars').
-      group('gear.id').
-      order('ownerships_count desc').
-      limit(5)
+    @microphones = Gear.popular_by_category('Microphones')
+    @interfaces = Gear.popular_by_category('Audio Interfaces')
+    @midi = Gear.popular_by_category('Keyboards/MIDI')
   end
 
   #

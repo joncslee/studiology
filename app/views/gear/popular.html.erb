@@ -1,7 +1,29 @@
-<h2>Popular Guitars</h2>
-<ul>
-  <% @guitars.each do |guitar| %>
-    <li><%= guitar.name %> - <%= guitar.ownerships.count %></li>
-  <% end %>
+<h1>Popular Music Gear</h1>
+
+<ul class="large-block-grid-3">
+  <li>
+    <h2>Microphones</h2>
+    <ul>
+      <% @microphones.each do |mic| %>
+        <li><%= link_to mic.name, mic %> - <%= mic.ownerships.count %></li>
+      <% end %>
+    </ul>
+  </li>
+  <li>
+    <h2>Audio Interfaces</h2>
+    <ul>
+      <% @interfaces.each do |interface| %>
+        <li><%= link_to interface.name, interface %> - <%= interface.ownerships.count %></li>
+      <% end %>
+    </ul>
+  </li>
+  <li>
+    <h2>Keyboards/MIDI</h2>
+    <ul>
+      <% @midi.each do |midi| %>
+        <li><%= link_to midi.name, midi %> - <%= midi.ownerships.count %></li>
+      <% end %>
+    </ul>
+  </li>
 </ul>
   

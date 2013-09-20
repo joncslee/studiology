@@ -18,6 +18,15 @@ class Gear < ActiveRecord::Base
     Gear.joins(:ownerships).select('gear.*, count(gear_id) as "gear_count"').where('gear.advertiser_category = ?', self.advertiser_category).group(:gear_id).order('gear_count desc')
   end
 
+  def self.popular_by_category(cat)
+    joins('inner join ownerships on ownerships.gear_id = gear.id').
+    select('gear.*, count(ownerships.id) as ownerships_count').
+    where('gear.category' => cat).
+    group('gear.id').
+    order('ownerships_count desc').
+    limit(5)
+  end
+
   def self.parse_data_from_zzounds
     count = 0
     File.open("#{Rails.root}/zdata/feed--affiliate.txt", "r").each_line do |line|
