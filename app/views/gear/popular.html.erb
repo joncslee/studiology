@@ -1,0 +1,7 @@
+<h2>Popular Guitars</h2>
+<ul>
+  <% @guitars.each do |guitar| %>
+    <li><%= guitar.name %> - <%= guitar.ownerships.count %></li>
+  <% end %>
+</ul>
+  

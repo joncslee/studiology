@@ -47,6 +47,15 @@ class GearController < ApplicationController
     @gear = @user.studio.gear
   end
 
+  def popular
+    @guitars = Gear.joins('inner join ownerships on ownerships.gear_id = gear.id').
+      select('gear.*, count(ownerships.id) as ownerships_count').
+      where('gear.category' => 'Guitars').
+      group('gear.id').
+      order('ownerships_count desc').
+      limit(5)
+  end
+
   #
   # actions to take place on the gear selection page
   #

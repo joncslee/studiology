@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130918202154) do
+ActiveRecord::Schema.define(version: 20130919222151) do
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20130918202154) do
     t.string   "in_stock"
     t.string   "condition"
     t.decimal  "standard_shipping_cost",             precision: 8, scale: 2
+    t.string   "category"
   end
 
   add_index "gear", ["slug"], name: "index_gear_on_slug", unique: true, using: :btree

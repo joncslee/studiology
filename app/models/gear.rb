@@ -4,6 +4,8 @@ class Gear < ActiveRecord::Base
   has_many :ownerships, :dependent => :destroy
   has_many :studio, :through => :ownerships
 
+  before_save :set_categories
+
   searchable do
     text :name, :as => :name_textp
   end
@@ -49,24 +51,6 @@ class Gear < ActiveRecord::Base
 
   end
 
-  # Name
-  # Description
-  # SKU
-  # URL_Product
-  # URL_Image_Small
-  # URL_Image_Large
-  # Price
-  # Price_High
-  # Price_List
-  # Category
-  # Manufacturer
-  # Shipping_Cost
-  # Price_Non_New
-  # Product_Type
-  # Popular
-  # Num_Raters
-  # Sample_Review
-
   require 'csv'
 
   def self.parse_data_from_mf
@@ -94,6 +78,62 @@ class Gear < ActiveRecord::Base
       gear.condition = fields['CONDITION']
       gear.standard_shipping_cost = fields['STANDARDSHIPPINGCOST']
       gear.save
+    end
+  end
+
+  def self.find_max_categories
+    max = 0
+    cat = nil
+    Gear.all.each_with_index do |g, i|
+      puts g.id if i % 100 == 0
+      cats = g.advertiser_category.split '/'
+      if cats.size > max
+        max = cats.size
+        cat = g.advertiser_category
+      end
+    end
+    puts "Max Cats: #{max}"
+    puts cat
+  end
+
+  private
+
+  def set_categories
+    cat = self.advertiser_category
+    if cat =~ /^Pro Audio\/iOS Devices\/iOS Microphones/ || cat =~ /^Pro Audio\/Microphones/
+      self.category = 'Microphones'
+    elsif cat =~ /^Pro Audio\/Recording Gear\/Audio Interfaces/
+      self.category = 'Audio Interfaces'
+    elsif cat =~ /^Pro Audio\/Recording Gear\/Studio Monitors/ || cat =~ /^Pro Audio\/Live Sound/ || cat =~ /^Pro Audio\/Recording Gear\/Studio Subwoofers/ || cat =~ /^Pro Audio\/Recording Gear\/Studio Power Amplifiers/
+      self.category = 'Monitors/Speakers'
+    elsif cat =~ /^Pro Audio\/Headphones/
+      self.category = 'Headphones'
+    elsif cat =~ /^Pro Audio\/Mixers/
+      self.category = 'Mixers'
+    elsif cat =~ /^Keyboards & MIDI/
+      self.category = 'Keyboards/MIDI'
+    elsif cat =~ /^Pro Audio\/Music Software/
+      self.category = 'Software'
+    elsif cat =~ /^Guitars/
+      self.category = 'Guitars'
+    elsif cat =~ /^Bass/
+      self.category = 'Bass'
+    elsif cat =~ /^Concert Percussion/ || cat =~ /^Drums & Percussion/ || cat =~ /^Marching Band\/Marching Percussion/
+      self.category = 'Drums/Percussion'
+    elsif cat =~ /^Amplifiers & Effects\/Amplifiers/
+      self.category = 'Amplifiers'
+    elsif cat =~ /^Amplifiers & Effects\/Effects/
+      self.category = 'Effects Pedals'
+    elsif cat =~ /^Pro Audio\/Signal Processors/
+      self.category = 'Signal Processors'
+    elsif (cat =~ /^Woodwinds/ && cat !~ /^Woodwinds\/Woodwind Acc/) || cat =~ /^Folk & Traditional Instruments/ || (cat =~ /^Brass Instruments/ && cat !~ /^Brass Instruments\/Acc/) || cat =~ /^Classroom & Kids\/Classroom Musical Instruments/ || (cat =~ /^Orchestral Strings/ && cat !~ /^Orchestral Strings\/Acc/)
+      self.category = 'Instruments'
+    elsif cat =~ /^Pro Audio\/Computers & Peripherals/
+      self.category = 'Computers'
+    elsif cat =~ /^Pro Audio\/DJ Gear/
+      self.category = 'DJ'
+    else
+      self.category = 'Miscellaneous'
     end
   end
 
