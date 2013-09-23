@@ -195,6 +195,13 @@ ul.popular-gear {
       max-width: 90%;
     }
   }
+  a {
+    color: #666;
+    &:hover {
+      text-decoration: underline;
+      color: $primary-color;
+    }
+  }
 }
 
 .clear-fix {

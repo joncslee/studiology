@@ -6,13 +6,15 @@
       <li>
         <h2><%= key %></h2>
         <div class="image-container">
-          <%= image_tag gear.first.image_url %>
-        </div>
-        <ul>
-          <% gear.each do |g| %>
-            <li><%= link_to g.name, g %> - <%= g.ownerships.count %></li>
+          <%= link_to gear.first do %>
+            <%= image_tag gear.first.image_url %>
           <% end %>
-        </ul>
+        </div>
+        <ol>
+          <% gear.each do |g| %>
+            <li><%= link_to g.name, g %></li>
+          <% end %>
+        </ol>
       </li>
     <% end %>
   <% end %>
