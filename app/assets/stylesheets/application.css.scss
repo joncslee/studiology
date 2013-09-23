@@ -15,7 +15,7 @@ $primary-color: #ee7532;
 
 $dark-orange: #ee7532;
 $light-orange: #f19a46;
-$border-grey: #d6d6d6;
+$border-grey: #e6e6e6;
 
 @import "foundation_and_overrides.scss";
 @import 'foundation-icons';
@@ -79,10 +79,21 @@ footer {
   margin-bottom: 30px;
 }
 
-ul.gear-filters {
-  li {
-    list-style-type: none;
-    margin-bottom: 5px;
+.gear-filters {
+  font-size: 0.85em;
+  .filter-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  ul {
+    border-top: $border-grey 1px solid;
+    padding-top: 5px;
+    li {
+      list-style-type: none;
+      margin-bottom: 5px;
+      border-bottom: $border-grey 1px solid;
+      padding-bottom: 5px;
+    }
   }
 }
 
@@ -163,6 +174,25 @@ ul.similar-gear {
     padding: 10px;
     &.current {
       background-color: #ededed;
+    }
+  }
+}
+
+ul.popular-gear {
+  h2 {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .image-container {
+    height: 200px;
+    position: relative;
+    margin: 10px 0;
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      max-height: 100%;
+      max-width: 90%;
     }
   }
 }

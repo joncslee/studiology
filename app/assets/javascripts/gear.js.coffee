@@ -42,8 +42,8 @@ $('#gear-ownership').on('mouseenter mouseleave', 'tr', ->
 #
 # pinterest-style dynamic tiling for studio page
 #
-container = $('#gear-container')
-container.imagesLoaded( ->
+gearContainer = $('#gear-container')
+gearContainer.imagesLoaded( ->
   # alter long image dimensions if necessary
   $('#gear-container a.item').each( ->
     anchor = this
@@ -56,8 +56,8 @@ container.imagesLoaded( ->
          $(anchor).addClass('narrow')
     )
   )
-  container.show()
-  container.masonry({
+  gearContainer.show()
+  gearContainer.masonry({
     columnWidth: 50,
     itemSelector: 'a.item'
   })
@@ -83,3 +83,16 @@ updateGear = (gearId, aod) ->
     data: 'gear_id=' + gearId + '&aod=' + aod,
     dataType: 'script'
   })
+
+#
+# popular gear image centering
+#
+popularContainer = $('.popular-gear')
+popularContainer.imagesLoaded( ->
+  $('.popular-gear').find('img').each( ->
+    height = this.height
+    width = this.width
+    $(this).css('margin-top', -(height / 2))
+    $(this).css('margin-left', -(width / 2))
+  )
+)

@@ -13,23 +13,19 @@
 </div>
 
 <div class="row">
-  <div class="large-2 columns">
-    <ul class="gear-filters">
-      <li><%= link_to 'Keyboards (3)', '#' %></li>
-      <li><%= link_to 'Interfaces (1)', '#' %></li>
-      <li><%= link_to 'Microphones (1)', '#' %></li>
-      <li><%= link_to 'Instruments (0)', '#' %></li>
-      <li><%= link_to 'Effects (0)', '#' %></li>
-      <li><%= link_to 'Headphones (0)', '#' %></li>
-      <li><%= link_to 'Monitors (0)', '#' %></li>
-      <li><%= link_to 'Miscellaneous (0)', '#' %></li>
+  <div class="large-2 columns gear-filters">
+    <div class="filter-label">Filter by Category</div>
+    <ul>
+      <% @gear.group_by { |gear| gear.category }.each do |cat,g| %>
+        <li><%= link_to "#{cat} (#{g.size})", '#' %></li>
+      <% end %>
     </ul>
   </div>
 
   <div class="large-10 columns">
 
     <div id="gear-container">
-      <% @studio.gear.each do |g| %>
+      <% @gear.each do |g| %>
         <%= link_to g, :class => 'item' do %>
           <%= image_tag g.image_url %><br />
           <%= g.name %>

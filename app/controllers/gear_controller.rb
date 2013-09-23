@@ -1,6 +1,6 @@
 class GearController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:search_suggestions, :add_gear, :show]
+  before_filter :authenticate_user!, :except => [:search_suggestions, :add_gear, :show, :popular]
 
   def index
     @gear = Gear.all.sample(50)
@@ -48,9 +48,24 @@ class GearController < ApplicationController
   end
 
   def popular
-    @microphones = Gear.popular_by_category('Microphones')
-    @interfaces = Gear.popular_by_category('Audio Interfaces')
-    @midi = Gear.popular_by_category('Keyboards/MIDI')
+    @gear_hash = {}
+    @gear_hash['Microphones'] = Gear.popular_by_category('Microphones')
+    @gear_hash['Audio Interfaces'] = Gear.popular_by_category('Audio Interfaces')
+    @gear_hash['Mixers'] = Gear.popular_by_category('Mixers')
+    @gear_hash['Signal Processors'] = Gear.popular_by_category('Signal Processors')
+    @gear_hash['Keyboards/MIDI'] = Gear.popular_by_category('Keyboards/MIDI')
+    @gear_hash['Monitors/Speakers'] = Gear.popular_by_category('Monitors/Speakers')
+    @gear_hash['Headphones'] = Gear.popular_by_category('Headphones')
+    @gear_hash['Guitars'] = Gear.popular_by_category('Guitars')
+    @gear_hash['Effects Pedals'] = Gear.popular_by_category('Effects Pedals')
+    @gear_hash['Amplifiers'] = Gear.popular_by_category('Amplifiers')
+    @gear_hash['Bass'] = Gear.popular_by_category('Bass')
+    @gear_hash['Instruments'] = Gear.popular_by_category('Instruments')
+    @gear_hash['Drums/Percussion'] = Gear.popular_by_category('Drums/Percussion')
+    @gear_hash['DJ'] = Gear.popular_by_category('DJ')
+    @gear_hash['Computers'] = Gear.popular_by_category('Computers')
+    @gear_hash['Software'] = Gear.popular_by_category('Software')
+    @gear_hash['Miscellaneous'] = Gear.popular_by_category('Miscellaneous')
   end
 
   #

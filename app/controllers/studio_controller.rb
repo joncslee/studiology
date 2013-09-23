@@ -4,6 +4,7 @@ class StudioController < ApplicationController
     @user = User.find_by_username(params[:id])
     if @user.present?
       @studio = @user.studio
+      @gear = @studio.gear
       @logged_in = @user == current_user
     else
       # go to an error page
