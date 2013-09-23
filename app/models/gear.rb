@@ -67,26 +67,31 @@ class Gear < ActiveRecord::Base
     CSV.foreach("mfdata/Musician_s_Friend-Musicians_Friend_Product_Catalog.txt", headers: true) do |row|
       fields = row.to_hash
 
-      gear = Gear.new
-      gear.name = fields['NAME']
-      gear.keywords = fields['KEYWORDS']
-      gear.description = fields['DESCRIPTION']
-      gear.sku = fields['SKU']
-      gear.manufacturer = fields['MANUFACTURER']
-      gear.manufacturer_id = fields['MANUFACTURERID']
-      gear.upc = fields['UPC']
-      gear.sale_price = fields['SALEPRICE']
-      gear.price = fields['PRICE']
-      gear.retail_price = fields['RETAILPRICE']
-      gear.buy_url = fields['BUYURL']
-      gear.impression_url = fields['IMPRESSIONURL']
-      gear.image_url = fields['IMAGEURL']
-      gear.advertiser_category = fields['ADVERTISERCATEGORY']
-      gear.promotional_text = fields['PROMOTIONALTEXT']
-      gear.in_stock = fields['INSTOCK']
-      gear.condition = fields['CONDITION']
-      gear.standard_shipping_cost = fields['STANDARDSHIPPINGCOST']
-      gear.save
+      name = fields['NAME']
+      advertiser_category = fields['ADVERTISERCATEGORY']
+
+      unless exclude?(name, advertiser_category)
+        gear = Gear.new
+        gear.name = name
+        gear.keywords = fields['KEYWORDS']
+        gear.description = fields['DESCRIPTION']
+        gear.sku = fields['SKU']
+        gear.manufacturer = fields['MANUFACTURER']
+        gear.manufacturer_id = fields['MANUFACTURERID']
+        gear.upc = fields['UPC']
+        gear.sale_price = fields['SALEPRICE']
+        gear.price = fields['PRICE']
+        gear.retail_price = fields['RETAILPRICE']
+        gear.buy_url = fields['BUYURL']
+        gear.impression_url = fields['IMPRESSIONURL']
+        gear.image_url = fields['IMAGEURL']
+        gear.advertiser_category = advertiser_category
+        gear.promotional_text = fields['PROMOTIONALTEXT']
+        gear.in_stock = fields['INSTOCK']
+        gear.condition = fields['CONDITION']
+        gear.standard_shipping_cost = fields['STANDARDSHIPPINGCOST']
+        gear.save
+      end
     end
   end
 
@@ -103,6 +108,26 @@ class Gear < ActiveRecord::Base
     end
     puts "Max Cats: #{max}"
     puts cat
+  end
+  
+  # helper method to filter out unwanted gear
+  def self.exclude?(name, advertiser_category)
+
+    if name =~ /^Used/
+      true
+    elsif advertiser_category =~ /^Accessories\/(Care|Strings)/
+      true
+    elsif advertiser_category =~ /^Brass Instruments\/Accessories for Brass Instruments\/Brass (Care|Replacement|Tools)/
+      true
+    elsif advertiser_category =~ /^Orchestral Strings\/Accessories for Orchestral Strings\/(Care|Replacement|Strings)/
+      true
+    elsif advertiser_category =~ /^Woodwinds\/Woodwind Accessories\/(Care|Woodwind Repair)/
+      true
+    elsif advertiser_category =~ /^(Books|Lifestyle)/
+      true
+    else
+      false
+    end
   end
 
   private
@@ -145,5 +170,6 @@ class Gear < ActiveRecord::Base
       self.category = 'Miscellaneous'
     end
   end
+
 
 end
