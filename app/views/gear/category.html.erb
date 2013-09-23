@@ -1,1 +1,8 @@
-category
+<%= @category %>
+
+<ul>
+  <% @gear.each do |g| %>
+    <li><%= link_to g.name, g %></li>
+  <% end %>
+</ul>
+

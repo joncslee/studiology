@@ -69,7 +69,8 @@ class GearController < ApplicationController
   end
 
   def category
-
+    @category = CATEGORIES[params[:id]]
+    @gear = Gear.find_all_by_category(@category)
   end
 
   #

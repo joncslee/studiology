@@ -1,0 +1,19 @@
+CATEGORIES = {
+  'microphones'       => 'Microphones',
+  'audio-interfaces'  => 'Audio Interfaces',
+  'mixers'            => 'Mixers',
+  'signal-processors' => 'Signal Processors',
+  'keyboards-midi'    => 'Keyboards/Midi',
+  'monitors-speakers' => 'Monitors/Speakers',
+  'headphones'        => 'Headphones',
+  'guitars'           => 'Guitars',
+  'effects-pedals'    => 'Effects Pedals',
+  'amplifiers'        => 'Amplifiers',
+  'bass'              => 'Bass',
+  'instruments'       => 'Instruments',
+  'drums-percussion'  => 'Drums/Percussion',
+  'dj'                => 'DJ',
+  'computers'         => 'Computers',
+  'software'          => 'Software',
+  'miscellaneous'     => 'Miscellaneous'
+}
