@@ -1,6 +1,7 @@
 Studiology::Application.routes.draw do
   devise_for :users
 
+  get '/:id' => 'gear#category', :constraints => Category
   get '/popular' => 'gear#popular'
 
   resources :gear

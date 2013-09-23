@@ -68,6 +68,10 @@ class GearController < ApplicationController
     @gear_hash['Miscellaneous'] = Gear.popular_by_category('Miscellaneous')
   end
 
+  def category
+
+  end
+
   #
   # actions to take place on the gear selection page
   #
