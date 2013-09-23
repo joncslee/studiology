@@ -15,7 +15,7 @@ class Gear < ActiveRecord::Base
   end
 
   def similar_gear
-    Gear.joins(:ownerships).select('gear.*, count(gear_id) as "gear_count"').where('gear.advertiser_category = ?', self.advertiser_category).group(:gear_id).order('gear_count desc')
+    Gear.joins(:ownerships).select('gear.*, count(gear_id) as "gear_count"').where('gear.category = ?', self.category).group(:gear_id).order('gear_count desc')
   end
 
   def self.popular_by_category(cat)
