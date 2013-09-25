@@ -65,3 +65,5 @@ gem 'friendly_id', '5.0.0.beta4'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'progress_bar'
+
+gem 'will_paginate', '~> 3.0'

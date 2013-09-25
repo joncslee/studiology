@@ -1,6 +1,6 @@
 class GearController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:search_suggestions, :add_gear, :show, :popular]
+  before_filter :authenticate_user!, :except => [:search_suggestions, :add_gear, :show, :popular, :category]
 
   def index
     @gear = Gear.all.sample(50)

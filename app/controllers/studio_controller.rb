@@ -13,7 +13,7 @@ class StudioController < ApplicationController
   end
 
   def explore
-    @studios = Studio.limit(20)
+    @studios = Studio.paginate(:page => params[:page], :per_page => 20)
   end
 
 end

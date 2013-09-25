@@ -22,9 +22,16 @@ $border-grey: #e6e6e6;
 @import 'compass';
 
 // general styles
-h1 {
+h1, h2, h3 {
   font-weight: normal;
+  border-bottom: $border-grey 1px solid;
+  padding-bottom: 10px;
 }
+
+h2 {
+  margin-bottom: 0;
+}
+
 
 #landing {
   padding-top: 50px;
@@ -44,18 +51,21 @@ h1 {
 }
 
 header {
+  background-color: #555;
   margin-bottom: 20px;
-  padding: 30px 0;
-  border-bottom: 1px solid $border-grey;
+  padding: 30px 0 25px 0;
   .logo {
-    float: left;
-    font-size: 2em;
+    img {
+      height: 50px;
+      float: left;
+    }
     a {
       color: $header-font-color;
     }
   }
   .account-info {
     float: right;
+    color: #999;
   }
 }
 
@@ -64,6 +74,49 @@ footer {
   padding: 30px 0;
   border-top: 1px solid $border-grey;
   text-align: center;
+}
+
+.landing-headline {
+  background-color: $primary-color;
+  height: 200px;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
+.pagination {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 0.8em;
+  a, span, em {
+    padding: 0.3em 0.6em;
+  }
+  a {
+    border: $primary-color 1px solid;
+    margin: 1px;
+    &:hover {
+      background-color: lighten($primary-color, 30%);
+    }
+  }
+  em.current {
+    border: $primary-color 1px solid;
+    font-style: normal;
+    font-weight: bold;
+    margin: 1px;
+    background-color: $primary-color;
+    color: white;
+  }
+  span {
+    color: #999;
+    border: #999 1px solid;
+  }
+}
+
+.get-started {
+  li {
+    list-style-type: none;
+    padding: 20px 0;
+    border-bottom: $border-grey 1px solid;
+  }
 }
 
 // studio header

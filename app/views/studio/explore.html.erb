@@ -1,20 +1,32 @@
-<h1>Newest Studios</h1>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nisl turpis, rutrum eget elementum sed, rhoncus vel velit. Sed volutpat posuere tristique. Duis euismod tincidunt turpis ut bibendum. Vestibulum ultricies eget leo id malesuada. Ut a lorem vehicula, elementum nunc ut, ultrices dolor. Nam id felis egestas, bibendum diam et, hendrerit diam. Nulla dolor nulla, varius sit amet pulvinar eget, placerat sollicitudin metus.</p>
+<div class="row">
+  <div class="large-7 columns">
 
-<% @studios.each do |studio| %>
-  <div class="studio-block">
-    <div class="photo">
-      <!-- <%= image_tag 'http://lorempixel.com/300/200/technics' %> -->
-    </div>
-    <div class="info">
-      <div class="header">
-        <%= link_to studio.user.username, studio.url %></li>
+    <h1>Newest Studios</h1>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nisl turpis, rutrum eget elementum sed, rhoncus vel velit. Sed volutpat posuere tristique. Duis euismod tincidunt turpis ut bibendum. Vestibulum ultricies eget leo id malesuada. Ut a lorem vehicula, elementum nunc ut, ultrices dolor. Nam id felis egestas, bibendum diam et, hendrerit diam. Nulla dolor nulla, varius sit amet pulvinar eget, placerat sollicitudin metus.</p>
+
+    <%= will_paginate @studios %>
+    <% @studios.each do |studio| %>
+      <div class="studio-block">
+        <div class="photo">
+          <!-- <%= image_tag 'http://lorempixel.com/300/200/technics' %> -->
+        </div>
+        <div class="info">
+          <div class="header">
+            <%= link_to studio.user.username, studio.url %></li>
+          </div>
+          <div class="content">
+          </div>
+        </div>
+
+        <div class="clear-fix"></div>
       </div>
-      <div class="content">
-      </div>
-    </div>
-
-    <div class="clear-fix"></div>
+    <% end %>
+    <%= will_paginate @studios %>
   </div>
-<% end %>
+
+  <div class="large-5 columns">
+    <%= render :partial => 'studio/get_started' %>
+  </div>
+</div>
