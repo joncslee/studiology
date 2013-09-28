@@ -8,12 +8,12 @@
 </ul>
 
 <ul class="similar-gear">
-  <% @gear.similar_gear.each do |g| %>
-    <% if @gear == g %>
-      <li class="current"><%= link_to g.name, g %></li>
-    <% else %>
-      <li><%= link_to g.name, g %></li>
-    <% end %>
+  <% @gear.more_popular.each do |g| %>
+    <li><%= link_to g.name, g %></li>
+  <% end %>
+  <li class="current"><%= link_to @gear.name, @gear %></li>
+  <% @gear.less_popular.each do |g| %>
+    <li><%= link_to g.name, g %></li>
   <% end %>
 </ul>
 

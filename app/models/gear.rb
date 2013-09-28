@@ -14,8 +14,24 @@ class Gear < ActiveRecord::Base
     user.studio.gear.include?(self)
   end
 
-  def similar_gear
-    Gear.joins(:ownerships).select('gear.*, count(gear_id) as "gear_count"').where('gear.category = ?', self.category).group(:gear_id).order('gear_count desc')
+  def more_popular
+    Gear.joins(:ownerships).
+      select('gear.*, count(gear_id) as "gear_count"').
+      where('gear.category = ?', self.category).
+      having('gear_count > ?', self.ownerships.count).
+      group(:gear_id).
+      order('gear_count desc').
+      limit(4)
+  end
+
+  def less_popular
+    Gear.joins(:ownerships).
+      select('gear.*, count(gear_id) as "gear_count"').
+      where('gear.category = ?', self.category).
+      having('gear_count < ?', self.ownerships.count).
+      group(:gear_id).
+      order('gear_count desc').
+      limit(4)
   end
 
   def self.popular_by_category(cat)
