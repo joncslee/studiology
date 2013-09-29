@@ -260,6 +260,21 @@ ul.popular-gear {
   }
 }
 
+.gear-details {
+  .info {
+    img {
+      max-width: 50%;
+      max-height: 50%;
+      float: left;
+      margin: 0 10px 10px 0;
+    }
+  }
+
+  .comments {
+    clear: both;
+  }
+}
+
 .clear-fix {
   clear: both;
 }

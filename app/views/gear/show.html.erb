@@ -1,54 +1,41 @@
-<% title "Gear" %>
+<% title @gear.name %>
 
-<p># Users using this: <%= @gear.ownerships.count %></p>
-<ul>
-  <% @gear.ownerships.each do |o| %>
-    <li><%= link_to o.studio.user.username, o.studio.url %></li>
-  <% end %>
-</ul>
+<div class="gear-details">
+  <h1><%= @gear.name %></h1>
+  <div class="info">
+    <%= image_tag @gear.image_url, :style => 'width: 50%;' %>
+    <div class="price"><%= number_to_currency @gear.price %></div>
+    <div class="manufacturer"><%= @gear.manufacturer %></div>
+    <div class="buy-link"><%= link_to 'Buy Now!', @gear.buy_url, :class => 'button' %></div>
+  </div>
 
-<ul class="similar-gear">
-  <% @gear.more_popular.each do |g| %>
-    <li><%= link_to g.name, g %></li>
-  <% end %>
-  <li class="current"><%= link_to @gear.name, @gear %></li>
-  <% @gear.less_popular.each do |g| %>
-    <li><%= link_to g.name, g %></li>
-  <% end %>
-</ul>
+  <div class="comments">
+    <h2>Comments</h2>
+  </div>
+</div>
 
-<%= image_tag @gear.image_url, :style => 'width: 100px;' %>
-
-<p>
-  <strong>Name:</strong>
-  <%= @gear.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @gear.description %>
-</p>
-
-<p>
-  <strong>SKU:</strong>
-  <%= @gear.sku %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @gear.price %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @gear.advertiser_category %>
-</p>
-
-<p>
-  <strong>Manufacturer:</strong>
-  <%= @gear.manufacturer %>
-</p>
-
+<div class="row">
+  <div class="large-6 columns">
+    <h2>Studios Using This: <%= @gear.ownerships.count %></h2>
+    <ul>
+      <% @gear.ownerships.each do |o| %>
+        <li><%= link_to o.studio.user.username, o.studio.url %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="large-6 columns">
+    <h2>Similar Gear</h2>
+    <ul class="similar-gear">
+      <% @gear.more_popular.each do |g| %>
+        <li><%= link_to g.name, g %></li>
+      <% end %>
+      <li class="current"><%= link_to @gear.name, @gear %></li>
+      <% @gear.less_popular.each do |g| %>
+        <li><%= link_to g.name, g %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
 <p>
   <%= link_to "Edit", edit_gear_path(@gear) %> |
