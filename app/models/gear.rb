@@ -1,4 +1,5 @@
 class Gear < ActiveRecord::Base
+  acts_as_commentable
   extend FriendlyId
   friendly_id :name, use: :slugged
   has_many :ownerships, :dependent => :destroy
@@ -14,14 +15,18 @@ class Gear < ActiveRecord::Base
     user.studio.gear.include?(self)
   end
 
+  def url
+    "/gear/#{self.slug}"
+  end
+
   def more_popular
     Gear.joins(:ownerships).
       select('gear.*, count(gear_id) as "gear_count"').
       where('gear.category = ?', self.category).
-      having('gear_count > ?', self.ownerships.count).
+      having('gear_count >= ?', self.ownerships.count).
       group(:gear_id).
-      order('gear_count desc').
-      limit(4)
+      order('gear_count, gear.id desc').
+      limit(3)
   end
 
   def less_popular
@@ -30,8 +35,8 @@ class Gear < ActiveRecord::Base
       where('gear.category = ?', self.category).
       having('gear_count < ?', self.ownerships.count).
       group(:gear_id).
-      order('gear_count desc').
-      limit(4)
+      order('gear_count, gear.id desc').
+      limit(3)
   end
 
   def self.popular_by_category(cat)

@@ -38,3 +38,8 @@
     <% end %>
   </div>
 </div>
+
+<h2>Comments</h2>
+<div id="comment-list">
+  <%= render :partial => 'comments/show', :locals => { :commentable => @studio } %>
+</div>

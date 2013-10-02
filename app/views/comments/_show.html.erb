@@ -1,0 +1,25 @@
+<% if commentable.root_comments.blank? && false %>
+  <p>No one has commented on this yet.  <%= link_to 'Be the first!', '' %></p>
+<% else %>
+  <div id="comment-list">
+    <% commentable.root_comments.each do |comment| %>
+      <p><%= link_to comment.user.username, "/#{comment.user.username}" %></p>
+      <p><%= comment.body %></p>
+    <% end %>
+  </div>
+<% end %>
+
+<% if user_signed_in? %>
+  <div id="comment-form">
+    <%= form_tag '/comments', :remote => true, :id => 'create-comment-form' do %>
+
+      <%= hidden_field_tag :commentable_type, commentable.class %>
+      <%= hidden_field_tag :commentable_id, commentable.id %>
+      <%= text_area_tag :body %>
+      <%= submit_tag %>
+    <% end %>
+  </div>
+<% else %>
+  <p>Please <%= link_to "sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %> to comment</p>
+<% end %>
+

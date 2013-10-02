@@ -3,19 +3,40 @@
 <div class="gear-details">
   <h1><%= @gear.name %></h1>
   <div class="info">
-    <%= image_tag @gear.image_url, :style => 'width: 50%;' %>
-    <div class="price"><%= number_to_currency @gear.price %></div>
-    <div class="manufacturer"><%= @gear.manufacturer %></div>
-    <div class="buy-link"><%= link_to 'Buy Now!', @gear.buy_url, :class => 'button' %></div>
+    <div class="image">
+      <%= image_tag @gear.image_url %>
+    </div>
+
+    <div class="similar-gear">
+      <div class="header">What Others Use:</div>
+      <ul>
+        <% @gear.more_popular.each do |g| %>
+          <li><%= link_to g.name, g %></li>
+        <% end %>
+        <li class="current"><%= link_to @gear.name, @gear %></li>
+        <% @gear.less_popular.each do |g| %>
+          <li><%= link_to g.name, g %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <% if false %>
+      <div class="buy-link"><%= link_to 'Buy Now!', @gear.buy_url, :class => 'button' %></div>
+    <% end %>
   </div>
 
-  <div class="comments">
-    <h2>Comments</h2>
-  </div>
 </div>
 
 <div class="row">
-  <div class="large-6 columns">
+  <div class="large-8 columns comments">
+    <h2>Comments</h2>
+
+    <div id="comment-list">
+      <%= render :partial => 'comments/show', :locals => { :commentable => @gear } %>
+    </div>
+
+  </div>
+  <div class="large-4 columns">
     <h2>Studios Using This: <%= @gear.ownerships.count %></h2>
     <ul>
       <% @gear.ownerships.each do |o| %>
@@ -23,22 +44,12 @@
       <% end %>
     </ul>
   </div>
-  <div class="large-6 columns">
-    <h2>Similar Gear</h2>
-    <ul class="similar-gear">
-      <% @gear.more_popular.each do |g| %>
-        <li><%= link_to g.name, g %></li>
-      <% end %>
-      <li class="current"><%= link_to @gear.name, @gear %></li>
-      <% @gear.less_popular.each do |g| %>
-        <li><%= link_to g.name, g %></li>
-      <% end %>
-    </ul>
-  </div>
 </div>
 
+<% if false %>
 <p>
   <%= link_to "Edit", edit_gear_path(@gear) %> |
   <%= link_to "Destroy", @gear, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", gear_path %>
 </p>
+<% end %>

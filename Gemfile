@@ -67,3 +67,4 @@ gem 'sunspot_solr'
 gem 'progress_bar'
 
 gem 'will_paginate', '~> 3.0'
+gem 'acts_as_commentable_with_threading', git: 'https://github.com/joncslee/acts_as_commentable_with_threading.git'

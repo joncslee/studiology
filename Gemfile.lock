@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/joncslee/acts_as_commentable_with_threading.git
+  revision: 531c957fa423a5107f78104720e845e73a11d92f
+  specs:
+    acts_as_commentable_with_threading (1.1.2)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      awesome_nested_set (>= 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -28,6 +37,8 @@ GEM
     addressable (2.3.5)
     arel (4.0.0)
     atomic (1.1.13)
+    awesome_nested_set (2.1.6)
+      activerecord (>= 3.0.0)
     bcrypt-ruby (3.1.2)
     builder (3.1.4)
     capybara (2.1.0)
@@ -218,6 +229,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_commentable_with_threading!
   capybara
   coffee-rails (~> 4.0.0)
   compass-rails (~> 2.0.alpha.0)

@@ -14,6 +14,7 @@ class StudioController < ApplicationController
 
   def explore
     @studios = Studio.paginate(:page => params[:page], :per_page => 20)
+    @comments = Comment.order('created_at DESC').limit(10)
   end
 
 end

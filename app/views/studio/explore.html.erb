@@ -25,5 +25,19 @@
 
   <div class="large-4 columns">
     <%= render :partial => 'studio/get_started' %>
+
+    <div class="recent-comments">
+      <h2>Recent Comments</h2>
+      <ul>
+        <% @comments.each do |comment| %>
+          <li>
+            <% commentable = comment.commentable_type.constantize.find(comment.commentable_id) %>
+            <%= link_to comment.user.username, "/#{comment.user.username}" %> commented on <%= link_to commentable.name, commentable.url %>:<br />
+            <%= comment.body %>
+          </li>
+        <% end %>
+      </ul>
+
+    </div>
   </div>
 </div>

@@ -11,7 +11,7 @@
  *= require_self
  */
 
-$primary-color: #ee7532;
+$primary-color: #fb9700;
 
 $dark-orange: #ee7532;
 $light-orange: #f19a46;
@@ -26,9 +26,10 @@ h1, h2, h3 {
   font-weight: normal;
   border-bottom: $border-grey 1px solid;
   padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-h2 {
+.get-started h2 {
   margin-bottom: 0;
 }
 
@@ -81,6 +82,20 @@ footer {
   height: 200px;
   margin-top: -20px;
   margin-bottom: 20px;
+  p {
+    font-size: 2em;
+    color: #363832;
+    font-weight: bold;
+    margin-bottom: .1em;
+  }
+}
+
+.recent-comments {
+  li {
+    list-style-type: none;
+    padding: 20px 0;
+    border-bottom: $border-grey 1px solid;
+  }
 }
 
 .pagination {
@@ -224,15 +239,6 @@ footer {
   }
 }
 
-ul.similar-gear {
-  li {
-    list-style-type: none;
-    padding: 10px;
-    &.current {
-      background-color: #ededed;
-    }
-  }
-}
 
 ul.popular-gear {
   h2 {
@@ -262,11 +268,31 @@ ul.popular-gear {
 
 .gear-details {
   .info {
-    img {
-      max-width: 50%;
-      max-height: 50%;
+    .image {
       float: left;
-      margin: 0 10px 10px 0;
+      width: 50%;
+      text-align: center;
+      img {
+        max-height: 400px;
+      }
+    }
+    .similar-gear {
+      float: left;
+      .header {
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #666;
+        margin-bottom: 10px;
+      }
+      ul {
+        li {
+          list-style-type: none;
+          padding: 10px;
+          &.current {
+            background-color: #ededed;
+          }
+        }
+      }
     }
   }
 
