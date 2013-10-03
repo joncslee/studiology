@@ -84,19 +84,22 @@ class Gear < ActiveRecord::Base
   require 'csv'
 
   def self.parse_data_from_mf
-    longest = 0
     CSV.foreach("mfdata/Musician_s_Friend-Musicians_Friend_Product_Catalog.txt", headers: true) do |row|
       fields = row.to_hash
 
       name = fields['NAME']
       advertiser_category = fields['ADVERTISERCATEGORY']
+      sku = fields['SKU']
 
       unless exclude?(name, advertiser_category)
-        gear = Gear.new
+        gear = Gear.find_by_sku(sku)
+        if gear.blank?
+          gear = Gear.new
+        end
         gear.name = name
         gear.keywords = fields['KEYWORDS']
         gear.description = fields['DESCRIPTION']
-        gear.sku = fields['SKU']
+        gear.sku = sku
         gear.manufacturer = fields['MANUFACTURER']
         gear.manufacturer_id = fields['MANUFACTURERID']
         gear.upc = fields['UPC']
