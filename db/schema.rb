@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930020739) do
+ActiveRecord::Schema.define(version: 20131002202535) do
 
   create_table "comments", force: true do |t|
     t.integer  "commentable_id",   default: 0
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20130930020739) do
     t.string   "category"
   end
 
+  add_index "gear", ["sku"], name: "index_gear_on_sku", unique: true, using: :btree
   add_index "gear", ["slug"], name: "index_gear_on_slug", unique: true, using: :btree
 
   create_table "ownerships", force: true do |t|
