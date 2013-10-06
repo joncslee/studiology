@@ -57,10 +57,12 @@ gearContainer.imagesLoaded( ->
     )
   )
   gearContainer.show()
-  gearContainer.masonry({
-    columnWidth: 50,
-    itemSelector: 'a.item'
-  })
+  gearContainer.isotope({
+    itemSelector : 'a.item',
+    masonry : {
+      columnWidth: 50
+    }
+  });
 )
 
 #
@@ -95,4 +97,14 @@ popularContainer.imagesLoaded( ->
     $(this).css('margin-top', -(height / 2))
     $(this).css('margin-left', -(width / 2))
   )
+)
+
+#
+# studio page gear filtering
+#
+$('.gear-filters a').click( ->
+  filterCat = $(this).data('filter')
+  gearContainer.isotope({
+    filter: filterCat
+  });
 )

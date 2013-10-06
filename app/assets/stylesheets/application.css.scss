@@ -216,13 +216,16 @@ footer {
   display: none;
   a.item {
     width: 200px;
-    padding: 20px;
-    border: #ededed 1px solid;
+    padding: 5px;
     color: #666;
     text-align: center;
     font-size: 0.85em;
     line-height: 1.2em;
     background: white;
+    .item-container {
+      border: #ededed 1px solid;
+      padding: 20px;
+    }
     img {
       margin-bottom: 10px;
     }
@@ -303,4 +306,26 @@ ul.popular-gear {
 
 .clear-fix {
   clear: both;
+}
+
+.isotope,
+.isotope .isotope-item {
+  /* change duration value to whatever you like */
+  @include transition-duration(0.8s)
+}
+
+.isotope {
+  @include transition-property(height, width)
+}
+
+.isotope .isotope-item {
+  @include transition-property(transform, opacity)
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  @include transition-duration(0s)
 }
