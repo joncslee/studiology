@@ -3,8 +3,19 @@
 <% else %>
   <div id="comment-list">
     <% commentable.root_comments.each do |comment| %>
-      <p><%= link_to comment.user.username, "/#{comment.user.username}" %></p>
-      <p><%= comment.body %></p>
+      <div class="comment">
+        <div class="avatar">
+          <%= image_tag 'http://placehold.it/200x200' %>
+        </div>
+
+        <div class="content">
+          <p class="header">
+            <%= link_to comment.user.username, "/#{comment.user.username}" %>
+            said on: <%= comment.created_at.strftime("%e %b %Y at %H:%m:%S%p") %>
+          </p>
+          <p><%= comment.body %></p>
+        </div>
+      </div>
     <% end %>
   </div>
 <% end %>

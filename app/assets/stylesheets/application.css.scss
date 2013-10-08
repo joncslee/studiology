@@ -275,6 +275,7 @@ ul.popular-gear {
       float: left;
       width: 50%;
       text-align: center;
+      margin-right: 20px;
       img {
         max-height: 400px;
       }
@@ -304,6 +305,28 @@ ul.popular-gear {
   }
 }
 
+.comment {
+  padding: 10px 0;
+  border-bottom: $border-grey 1px dotted;
+  float: left;
+  .avatar {
+    width: 80px;
+    float: left;
+    margin-right: 20px;
+  }
+  .content {
+    float: left;
+  }
+
+  p.header {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  &, &:after {
+    clear:both;
+  }
+}
+
 .clear-fix {
   clear: both;
 }
@@ -328,4 +351,9 @@ ul.popular-gear {
 .isotope.no-transition .isotope-item,
 .isotope .isotope-item.no-transition {
   @include transition-duration(0s)
+}
+
+.sign-in {
+  padding: 20px;
+  border: 1px $border-grey solid;
 }
